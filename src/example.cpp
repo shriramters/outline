@@ -63,3 +63,10 @@ void highlight_cursor(skity::Canvas* canvas, float x, float y) {
     paint.setStyle(skity::Paint::kFill_Style);
     canvas->drawCircle(x, y, 20.f, paint);
 }
+
+void catmull_rom_to(skity::Path* path, float x1, float y1, float x2, float y2) {
+    float dx = x2 - x1;
+    float dy = y2 - y1;
+    path->cubicTo(x1 + dx / 3.f, y1 + dy / 3.f, x2 - dx / 3.f, y2 - dy / 3.f, x2,
+        y2);
+}

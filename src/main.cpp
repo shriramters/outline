@@ -26,7 +26,13 @@ protected:
                 spdlog::info("moveTo: {}, {}", x, y);
                 paths.back().moveTo(x, y);
             }
-            paths.back().lineTo(x, y);
+            else {
+                skity::Point last_point = paths.back().getPoint(paths.back().countPoints() - 1);
+                if (last_point.x != x || last_point.y != y) {
+                    spdlog::info("lineTo: {}, {}", x, y);
+                    paths.back().lineTo(x, y);
+                }
+            }
         }
 
         if (!GetMouseButton(GLFW_MOUSE_BUTTON_LEFT) && paths.back().countPoints() > 0) {
